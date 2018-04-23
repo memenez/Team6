@@ -1,14 +1,6 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Credential Approval</ion-title>
-
-    <ion-buttons end>
-        <button ion-button icon-only clear (click)="goHome()">
-          <ion-icon name="home">
-          </ion-icon>
-        </button>
-      </ion-buttons>
-      
   </ion-navbar>
 </ion-header>
 
@@ -16,11 +8,12 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let c of credList | async">
-        <ion-avatar item-start><ion-icon name="person"></ion-icon></ion-avatar>
+        <ion-avatar ion-item>
+          <ion-icon name="person"></ion-icon>
           <h3>{{c.User}}</h3>
           <h2>User Type: {{c.type}}</h2>
-        
-      <ion-item-options side="right">
+        </ion-avatar>
+      <ion-item-options side="righ  t">
 
         <button ion-button color="success" (click)='approveUser(c.User, c.Pass, c.id,c.firstname, c.middlename, c.lastname, c.phone, c.type)'>
           <ion-icon name="checkmark"></ion-icon>

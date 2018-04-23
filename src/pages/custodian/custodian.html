@@ -1,46 +1,21 @@
 <ion-header>
   <ion-navbar>
-    
+    <button ion-button menuToggle>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
     <ion-title>Custodian</ion-title>
-
-    <ion-buttons end>
-        <button ion-button icon-only clear (click)="goHome()">
-          <ion-icon name="home">
-          </ion-icon>
-        </button>
-      </ion-buttons>
-      
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list  no-lines >
-      
-    <ion-item-sliding *ngFor="let p of people | async" >
-      <button *ngIf="p.role != 'user'" ion-item clear (click)='viewPerson(p.First_name, p.Middle_name, p.Last_name, p.EID, p.img)'>
-      
-          <ion-avatar item-start><img [src]="p.img"></ion-avatar>
-      {{p.First_name}} {{p.Middle_name}} {{p.Last_name}}
-      <p>{{p.EID}}</p>
-    </button>
-          
-      <ion-item-options side="right" *ngIf="fafe == 'admin'">
-          
-        <button ion-button color="danger" (click)='removeCustodian(p.id)'>
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-
-    
-    </ion-item-sliding> 
-    
+  <ion-list ion-item *ngFor="let c of custRef | async">
+      {{c.First_name}} {{c.Middle_name}} {{c.Last_name}}
   </ion-list>
-      
-  
 
   <ion-fab right bottom>
-      <button ion-fab color="secondary" [navPush]="pushPage"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>  
-
+    <button ion-fab color="secondary"><ion-icon name="arrow-dropup-circle"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="add-circle"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

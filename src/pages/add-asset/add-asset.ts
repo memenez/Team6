@@ -29,13 +29,6 @@ export class AddAssetPage {
   cube: Observable<any[]>;
   projRef: AngularFireList<any>;
   proj: Observable<any[]>;
-  peopleRef: AngularFireList<any>;
-  people: Observable<any[]>;
-  custRef: AngularFireList<any>;
-  cust: Observable<any[]>;
-  modelsRef: AngularFireList<any>;
-  models: Observable<any[]>;
-
   assetDb = {} as Asset;
 
 
@@ -50,20 +43,14 @@ export class AddAssetPage {
   ) {
     this.assetRef = this.afDatabase.list("/Assets");
     this.assets = this.assetRef.valueChanges();
-    this.typeRef = this.afDatabase.list("Assets/data/Types");
+    this.typeRef = this.afDatabase.list("/Types");
     this.type = this.typeRef.valueChanges();
-    this.OSRef = this.afDatabase.list("Assets/data/OS");
+    this.OSRef = this.afDatabase.list("/OS");
     this.OS = this.OSRef.valueChanges();
-    this.cubeRef = this.afDatabase.list("Assets/data/Cubes");
+    this.cubeRef = this.afDatabase.list("/Cubes");
     this.cube = this.cubeRef.valueChanges();
-    this.projRef = this.afDatabase.list("Assets/data/Projects");
+    this.projRef = this.afDatabase.list("/Projects");
     this.proj = this.projRef.valueChanges();
-    this.peopleRef = this.afDatabase.list("People/");
-    this.people = this.peopleRef.valueChanges();
-    this.custRef = this.afDatabase.list("Custodians/");
-    this.cust = this.custRef.valueChanges();
-    this.modelsRef = this.afDatabase.list("Assets/data/Models");
-    this.models = this.modelsRef.valueChanges();
   }
 
   ionViewDidLoad() {

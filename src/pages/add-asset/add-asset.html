@@ -42,7 +42,7 @@
                 <ion-item>
                   <ion-label>Model</ion-label>
                   <ion-select name='a' [(ngModel)]='assetDb.Model' interface="popover" >
-                    <ion-option *ngFor="let t of models | async" value= {{t.name}}> {{t.name}}</ion-option>
+                    <ion-option *ngFor="let t of type | async" value= {{t.name}}> {{t.name}}</ion-option>
                     
                   </ion-select>
                 </ion-item>
@@ -90,7 +90,7 @@
               <ion-item>
                       <ion-label>Assignee</ion-label>
                       <ion-select name='j' [(ngModel)]='assetDb.Assignee' interface="popover" >
-                        <ion-option *ngFor="let c of people | async" value= {{c.First_name}}> {{c.First_name}}</ion-option>
+                        <ion-option *ngFor="let c of cust | async" value= {{c.First_name}}> {{c.First_name}}</ion-option>
                         
                       </ion-select>
               </ion-item>

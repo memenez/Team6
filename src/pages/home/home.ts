@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, NavParams, MenuController, AlertController } from 'ionic-angular';
+import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ViewPeoplePage } from '../view-people/view-people';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-home',
@@ -12,18 +10,12 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomePage {
 
   items: any;
-  assets: any;
   searchTerm: string = '';
-
-  accType = this.afAuth.auth.currentUser.displayName;
-  accEmail = this.afAuth.auth.currentUser.email;
-
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public dataService: DataProvider, public navParams: NavParams, public afAuth:AngularFireAuth, public menuCtrl: MenuController, public alertCtrl: AlertController, private afDatabase: AngularFireDatabase ) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public dataService: DataProvider, public navParams: NavParams ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
-    console.log(this.assets);
     let loader = this.loadingCtrl.create({
       content: "Loading. Please wait...",
       duration: 800
@@ -33,12 +25,8 @@ export class HomePage {
     let searchTerm = this.navParams.get('searchTerm');
     if (searchTerm != (null)){
     this.items = this.dataService.searchItems(searchTerm);
-    this.assets = this.dataService.searchAssets(searchTerm);
     }
-    else {
-      this.items = this.dataService.searchItems('');
-      this.assets = this.dataService.searchAssets('');
-    };
+    else {this.items = this.dataService.searchItems('')};
   }
 
   viewPerson(First_name, Middle_name, Last_name, EID, img){

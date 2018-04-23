@@ -17,30 +17,12 @@
 
 <ion-content padding (onLoad)="presentLoading()">
 
-  <div *ngIf="accType == 'admin'">
-  <ion-list no-lines *ngFor="let item of items | async">
-    <ion-item > 
+  <ion-list no-lines>
+    <ion-item *ngFor="let item of items | async"> 
         <button ion-button block large color="test" (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
             <h2 class='listtext'>{{item.First_name}} {{item.Middle_name}} {{item.Last_name}}</h2>
         </button>
       </ion-item>
   </ion-list>
-</div>
-
-  <div *ngIf="accType == 'user'">
-    <h2>My Assets</h2>
-  <ion-list no-lines  *ngFor="let item of assets | async">
-      <ion-item *ngIf="item.Owner == accEmail"> 
-          <button ion-button block large color="test"  (click)='viewPerson(item.First_name, item.Middle_name, item.Last_name, item.EID, item.img, item.id)'>
-              <h2 class='listtext' >{{item.Model}}</h2>
-          </button>
-        </ion-item>
-    </ion-list>
-
-    <div *ngIf="(assets | async) == 0">
-      <p>You have no known assets :(</p>
-    </div>
-  </div>
-
 
 </ion-content>

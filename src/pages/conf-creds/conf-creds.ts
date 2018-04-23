@@ -12,7 +12,6 @@ import { Observable } from "rxjs";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Vibration } from "@ionic-native/vibration";
 import "rxjs/add/operator/map";
-import { HomePage } from "../home/home";
 
 
 @IonicPage()
@@ -84,9 +83,7 @@ export class ConfCredsPage {
                 First_name: firstname,
                 Middle_name: middlename,
                 Last_name: lastname,
-                img: this.stock,
-                role: type
-
+                img: this.stock
 
 
               })
@@ -153,9 +150,4 @@ export class ConfCredsPage {
     // the rest of the pages won't be able to swipe to open menu
     this.menu.swipeEnable(true);
   }
-
-  goHome(){
-    this.navCtrl.setRoot(HomePage);
-  }
-
 }

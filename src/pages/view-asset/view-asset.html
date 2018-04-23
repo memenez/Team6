@@ -1,14 +1,6 @@
 <ion-header>
     <ion-navbar *ngFor='let a of assets'>
-      <ion-title>Viewing Asset {{a.Type}}, {{a.Model}} </ion-title>
-
-      <ion-buttons end>
-          <button ion-button icon-only clear (click)="goHome()">
-            <ion-icon name="home">
-            </ion-icon>
-          </button>
-        </ion-buttons>
-        
+      <ion-title>Viewing Asset {{p.firstname}} {{p.lastname}} </ion-title>
     </ion-navbar>
   </ion-header>
  
@@ -17,25 +9,10 @@
 
   <ion-list no-line *ngFor='let a of assets'>
     <ion-thumbnail item-start>
-      <img [src]='a.img' width="350" height="350">
+      <img [src]='p.img' width="350" height="350">
     </ion-thumbnail>
-    <h2>Type: {{a.Type}}</h2>
-    <h2>Model: {{a.Model}}</h2>
-    <h2>Operating System: {{a.OS}}</h2>
-    <h2>Memory: {{a.Memory}}</h2>
-    <h2>Hard Disk: {{a.Hard_Disk}}</h2>
-    <h2>Number: {{a.Number}}</h2>
-    <h2>Sreial Tag: {{a.Serial}}</h2>
-    <h2>Project: {{a.Project}}</h2>
-    <h2>Owner: {{a.Owner}}</h2>
-    <h2>Assignee: {{a.Assignee}}</h2>
-    <h2>Cube: {{a.Cube}}</h2>
-    <!-- <h2>Peripherals: {{a.Peripherals}}</h2> -->
-    
+    <h1>{{p.firstname}} {{p.middlename}} {{p.lastname}}</h1>
+    <p>{{p.eid}}</p>
   </ion-list>
-
-  <ion-fab right bottom *ngFor="let a of assets">
-      <button ion-fab color="secondary" (click)='editAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img)'><ion-icon name="create"></ion-icon></button>
-    </ion-fab> 
 
 </ion-content>

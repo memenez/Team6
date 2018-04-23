@@ -1,17 +1,12 @@
 <ion-menu [content]="content">
   <ion-header id='con'>
       <ion-list no-lines >
-          <div *ngIf="afAuth.authState | async as authUser">
-        <button ion-item clear (click)="goProfile()" id='con'>
-            
-                
+        <button ion-item clear [navPush]="pushPage" id='con'>
             <ion-avatar item-start>
               <img src = 'assets/imgs/logo.png'>
             </ion-avatar>
-            <h2>{{authUser.email}}</h2>
-           
+            <h2>Kenneth M. Carolino</h2>
         </button>
-      </div>
         </ion-list>
   </ion-header>
 
@@ -44,9 +39,7 @@
     </ion-navbar>
   </ion-header>
   
-  <ion-content >
-    <div *ngIf="afAuth.authState | async as authUser">
-    <div *ngIf="authUser.displayName == 'admin'">
+  <ion-content>
     <ion-searchbar animated [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"> </ion-searchbar>
 
     <ion-list no-lines >
@@ -55,20 +48,6 @@
         <h2 class='listtext'>{{item.First_name}}</h2>
     </ion-item>
     </ion-list>
-  </div>
-
-  <div *ngIf="authUser.displayName == 'user'">
-      <ion-searchbar animated [(ngModel)]="searchTerm" (ionInput)="setFilteredAssets()"> </ion-searchbar>
-  
-      <ion-list no-lines *ngFor='let item of asset | async'>
-        <ion-item *ngIf="item.Owner == authUser.email" >
-          <ion-icon item-left name='search'></ion-icon>
-          <h2 class='listtext' >{{item.Model}}</h2>
-      </ion-item>
-      </ion-list>
-    </div>
-
-  </div>
   </ion-content>
 </ion-menu>
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

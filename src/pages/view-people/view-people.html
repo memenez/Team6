@@ -1,14 +1,6 @@
 <ion-header>
     <ion-navbar *ngFor='let p of persons'>
       <ion-title>Viewing User {{p.firstname}} {{p.lastname}} </ion-title>
-
-      <ion-buttons end>
-          <button ion-button icon-only clear (click)="goHome()">
-            <ion-icon name="home">
-            </ion-icon>
-          </button>
-        </ion-buttons>
-        
     </ion-navbar>
   </ion-header>
  
@@ -19,33 +11,6 @@
       <img [src]='p.img' width="350" height="350" (click)='viewImg(p.img)'>
     <h1>{{p.firstname}} {{p.middlename}} {{p.lastname}}</h1>
     <p>{{p.eid}}</p>
-
-    <div align="left">
-        <h2>Owned Assets:</h2>
-        
-        <ion-list no-line *ngFor="let a of assets | async">
-      
-          <ion-item *ngIf="a.Owner == p.eid">
-              <button ion-item clear (click)='viewAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner,a.Project, a.Serial, a.Type, a.id, a.img)'>
-              {{a.Type}} {{a.Model}}
-              </button>
-          </ion-item>
-        </ion-list>
-      
-        <h2>Assigned Assets:</h2>
-        <ion-list no-line *ngFor="let a of assets | async">
-          
-          <ion-item *ngIf="a.Assignee == p.eid">
-              <button ion-item clear (click)='viewAsset(a.Assignee, a.Cube, a.Hard_Disk, a.Memory, a.Model, a.Number, a.OS, a.Owner, a.Project, a.Serial, a.Type, a.id, a.img)'>
-              {{a.Type}} {{a.Model}}
-              </button>
-          </ion-item>
-        </ion-list>
-      </div>
   </ion-list>
-
-  <ion-fab right bottom *ngFor="let p of persons">
-      <button ion-fab color="secondary" (click)='editPerson(p.firstname, p.middlename, p.lastname, p.eid, p.img, p.id)'><ion-icon name="create"></ion-icon></button>
-    </ion-fab> 
 
 </ion-content>

@@ -34,16 +34,9 @@ export class MyApp {
   rootPage: any = LoginPage;
   pushPage: any = ProfilePage;
   pages: Array<{ icon: string; letter: string; title: string; component: any }>;
-
-  
-
-  // accType = this.afAuth.auth.currentUser.displayName;
-  // accEmail = this.afAuth.auth.currentUser.email;
   private items: any;
-  private asset: any;
   private searchTerm: string = "";
   constructor(
-    
     private platform: Platform,
     private min: AppMinimize,
     private toastCtrl: ToastController,
@@ -83,12 +76,11 @@ export class MyApp {
       this.splashScreen.hide();
       console.log(this.pages);
       this.setFilteredItems();
-      this.setFilteredAssets();
     });
   }
 
   openPage(page) {
-    
+    accType = 'user';
     if (page.component == ConfCredsPage || page.component == CubesPage) {
       var accType = this.afAuth.auth.currentUser.displayName;
       if (accType == "admin") {
@@ -120,13 +112,5 @@ export class MyApp {
   setFilteredItems() {
     this.items = this.dataService.filterItems(this.searchTerm);
     console.log("items" + this.items);
-  }
-  setFilteredAssets() {
-    this.asset = this.dataService.filterAssets(this.searchTerm);
-    console.log("items" + this.asset);
-  }
-
-  goProfile(){
-    this.nav.push(ProfileDetailsPage);
   }
 }
