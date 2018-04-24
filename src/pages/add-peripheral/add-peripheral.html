@@ -1,18 +1,75 @@
-<!--
-  Generated template for the AddPeripheralPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>add-peripheral</ion-title>
+    <ion-title>Add a Peripheral</ion-title>
+    <ion-buttons end>
+    <button ion-button icon-only clear (click)='addThing(thing)'>
+      <ion-icon name="checkmark" color='light'>
+       </ion-icon>
+    </button>  
+  </ion-buttons> 
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+    <ion-slides pager>
+
+        <ion-slide style="background-color: grey" >
+            <div (click)='takePic()'>
+          <button ion-button  >
+            <ion-icon name="camera" color='dark'></ion-icon>
+              Take a Picture
+          </button>
+          </div>
+          <br>
+          <i><b>or</b></i>
+          <br>
+          <br>
+          <div (click)='getPic()'> 
+            <button ion-button  >
+              <ion-icon name="images" color='dark'></ion-icon>
+                Get from Gallery
+            </button>
+          </div>
+        </ion-slide>
+      
+        <ion-slide *ngIf='img == undefined'>
+          <img src='assets/imgs/logo.png'>
+        </ion-slide>
+
+        <ion-slide *ngIf='img'>
+          <img [src]='img'>
+          <ion-fab right top>
+            <button ion-fab color="danger" (click)='showConfirm()'>
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-fab>
+        </ion-slide>
+      </ion-slides>
+
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select [(ngModel)]="thing.Type" interface="popover" >
+          <ion-option *ngFor='let t of type | async' value={{t.name}}>{{t.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon item-start name='person'></ion-icon>
+        <ion-label>Model</ion-label>
+        <ion-select  [(ngModel)]="thing.Model" interface="popover">
+          <ion-option *ngFor='let m of model | async' value={{m.name}}>{{m.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Number</ion-label>
+      <ion-input type="text" [(ngModel)]="thing.Number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Serial Tag</ion-label>
+      <ion-input type="text" [(ngModel)]="thing.Serial"></ion-input>
+    </ion-item>
 
 </ion-content>

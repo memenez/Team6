@@ -21,6 +21,8 @@ import { HomePage } from "../home/home";
 export class BrandsPage {
   brandsRef: AngularFireList<any>;
   brands: Observable<any[]>;
+  modelRef: AngularFireList<any>;
+  model: Observable<any[]>;
   fafe = this.afAuth.auth.currentUser.displayName;
   constructor(
     public navCtrl: NavController,
@@ -34,6 +36,8 @@ export class BrandsPage {
   ) {
     this.brandsRef = this.afDb.list("Assets/data/Brands");
     this.brands = this.brandsRef.valueChanges();
+    this.modelRef = this.afDb.list("Assets/data/Models");
+    this.model = this.modelRef.valueChanges();
   }
 
   ionViewDidLoad() {
@@ -50,6 +54,7 @@ export class BrandsPage {
 
   addBrand() {
     const newBrand = this.brandsRef.push({});
+    const newModel = this.modelRef.push({});
 
     let prompt = this.alertCtrl.create({
       title: "Add Brand",
@@ -90,6 +95,10 @@ export class BrandsPage {
               newBrand.set({
                 id: newBrand.key,
                 name: data.name,
+                mxodel: data.model,
+              });
+              newModel.set({
+                id: newModel.key,
                 model: data.model,
               });
               let toast = this.toastCtrl.create({
